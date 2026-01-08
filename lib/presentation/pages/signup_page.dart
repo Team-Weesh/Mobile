@@ -84,7 +84,7 @@ class _SignupPageState extends State<SignupPage> {
           titleColor: AppColors.textColor,
         ),
         GestureDetector(
-          onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage(loginType: widget.loginType,),)),
+          onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage(loginType: widget.loginType,),)),
           child: Text(
             '로그인',
             style: AppTextStyles.robotoRegular(

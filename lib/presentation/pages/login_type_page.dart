@@ -19,7 +19,7 @@ class _LoginTypePageState extends State<LoginTypePage> {
 
   void navigateLoginPage() {
     // 타입 저장 로직
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage(loginType: selectedLoginType ?? LoginType.student),));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage(loginType: selectedLoginType ?? LoginType.student),));
   }
 
   void changeLoginType(LoginType type) {
