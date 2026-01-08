@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weesh/presentation/pages/login_page.dart';
 import 'package:weesh/presentation/widgets/character_widget.dart';
-import 'package:weesh/presentation/widgets/circle_button.dart';
+import 'package:weesh/presentation/widgets/rect_button.dart';
 
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
@@ -53,22 +53,11 @@ class _LoginTypePageState extends State<LoginTypePage> {
               ),
             ),
             Spacer(flex: 9,),
-            GestureDetector(
-              onTap: () => navigateLoginPage(),
-              child: Container(
-                alignment: AlignmentGeometry.center,
-                margin: EdgeInsetsGeometry.symmetric(horizontal: 35),
-                width: double.infinity,
-                height: 47,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: selectedLoginType == '' ? AppColors.lightGrey : AppColors.primary,
-                ),
-                child: Text(
-                  '시작하기',
-                  style: AppTextStyles.robotoSemiBold(size: 16, color: selectedLoginType == '' ? AppColors.textColor : Colors.white),
-                ),
-              ),
+            RectButton(
+              title: '시작하기',
+              function: () => navigateLoginPage(),
+              backgroundColor: selectedLoginType == '' ? AppColors.lightGrey : AppColors.primary,
+              titleColor: selectedLoginType == '' ? AppColors.textColor : Colors.white,
             ),
             SizedBox(height: 34,)
           ],
