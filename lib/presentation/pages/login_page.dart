@@ -18,7 +18,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController idController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   @override
@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
     child: Column(
       spacing: MediaQuery.sizeOf(context).height * 0.024,
       children: [
-        TextInputField(hintText: '이메일', isPassword: false, controller: idController),
+        TextInputField(hintText: '이메일', isPassword: false, controller: emailController),
         TextInputField(hintText: '비밀번호', isPassword: true, controller: passwordController),
       ],
     ),
