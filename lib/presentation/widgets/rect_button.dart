@@ -14,8 +14,8 @@ class RectButton extends StatelessWidget {
     return GestureDetector(
       onTap: function,
       child: Container(
-        alignment: AlignmentGeometry.center,
-        margin: EdgeInsetsGeometry.symmetric(horizontal: 35),
+        alignment: Alignment.center,
+        margin: EdgeInsets.symmetric(horizontal: 35),
         width: double.infinity,
         height: 47,
         decoration: BoxDecoration(
