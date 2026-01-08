@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weesh/domain/enum/login_type.dart';
 import 'package:weesh/presentation/pages/login_page.dart';
 import 'package:weesh/presentation/widgets/character_widget.dart';
 import 'package:weesh/presentation/widgets/rect_button.dart';
@@ -14,14 +15,14 @@ class LoginTypePage extends StatefulWidget {
 }
 
 class _LoginTypePageState extends State<LoginTypePage> {
-  String selectedLoginType = '';
+  LoginType? selectedLoginType;
 
   void navigateLoginPage() {
     // 타입 저장 로직
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage(),));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage(loginType: selectedLoginType ?? LoginType.student),));
   }
 
-  void changeLoginType(String type) {
+  void changeLoginType(LoginType type) {
     setState(() {
       selectedLoginType = type;
     });
@@ -47,8 +48,8 @@ class _LoginTypePageState extends State<LoginTypePage> {
               child: Row(
                 spacing: 40 - 16,
                 children: [
-                  loginTypeButton('학생', 'student'),
-                  loginTypeButton('선생님', 'teacher'),
+                  loginTypeButton('학생', 'student', LoginType.student),
+                  loginTypeButton('선생님', 'teacher', LoginType.teacher),
                 ],
               ),
             ),
@@ -56,8 +57,8 @@ class _LoginTypePageState extends State<LoginTypePage> {
             RectButton(
               title: '시작하기',
               function: () => navigateLoginPage(),
-              backgroundColor: selectedLoginType == '' ? AppColors.lightGrey : AppColors.primary,
-              titleColor: selectedLoginType == '' ? AppColors.textColor : Colors.white,
+              backgroundColor: selectedLoginType == null ? AppColors.lightGrey : AppColors.primary,
+              titleColor: selectedLoginType == null ? AppColors.textColor : Colors.white,
             ),
             SizedBox(height: 34,)
           ],
@@ -66,8 +67,8 @@ class _LoginTypePageState extends State<LoginTypePage> {
     );
   }
 
-  Widget loginTypeButton(String title, String image) => Expanded(child: GestureDetector(
-    onTap: () => changeLoginType(image),
+  Widget loginTypeButton(String title, String image, LoginType loginType) => Expanded(child: GestureDetector(
+    onTap: () => changeLoginType(loginType),
     child: Stack(
       alignment: AlignmentGeometry.topRight,
       children: [
@@ -83,7 +84,7 @@ class _LoginTypePageState extends State<LoginTypePage> {
             ),
           ),
         ),
-        if(selectedLoginType == image) Container(
+        if(selectedLoginType == loginType) Container(
           alignment: AlignmentGeometry.center,
           width: 23,
           height: 23,

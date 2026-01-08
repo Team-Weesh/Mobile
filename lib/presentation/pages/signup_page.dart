@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:weesh/domain/enum/login_type.dart';
+import 'package:weesh/presentation/mappers/login_type_ui_mapper.dart';
 import 'package:weesh/presentation/pages/login_page.dart';
 import 'package:weesh/presentation/theme/app_colors.dart';
 import 'package:weesh/presentation/theme/app_text_styles.dart';
@@ -7,7 +9,9 @@ import 'package:weesh/presentation/widgets/circle_button.dart';
 import 'package:weesh/presentation/widgets/text_input_field.dart';
 
 class SignupPage extends StatefulWidget {
-  const SignupPage({super.key});
+  const SignupPage({super.key, required this.loginType});
+
+  final LoginType loginType;
 
   @override
   State<SignupPage> createState() => _SignupPageState();
@@ -36,7 +40,7 @@ class _SignupPageState extends State<SignupPage> {
               CharacterWidget(name: 'timid_green'),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.035,),
               Text(
-                '회원가입',
+                '${widget.loginType.label} 회원가입',
                 style: AppTextStyles.interBold(size: 26, color: AppColors.primary, lineHeight: 24, letterSpacing: 0),
               ),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.04,),
@@ -63,7 +67,7 @@ class _SignupPageState extends State<SignupPage> {
                     CircleButton(
                       title: '로그인',
                       heightPadding: 20,
-                      function: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage(),)),
+                      function: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage(loginType: widget.loginType,),)),
                       unselected: true,
                     ),
                   ],
