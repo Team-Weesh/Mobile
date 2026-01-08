@@ -24,6 +24,15 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController confirmPasswordController = TextEditingController();
 
   @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(child: SingleChildScrollView(
