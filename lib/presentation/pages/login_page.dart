@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:weesh/domain/enum/login_type.dart';
 import 'package:weesh/presentation/mappers/login_type_ui_mapper.dart';
@@ -18,8 +20,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController idController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,49 +49,15 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: (MediaQuery.sizeOf(context).height * 0.13) - (MediaQuery.paddingOf(context).top),),
               CharacterWidget(name: 'happy_green', width: MediaQuery.sizeOf(context).width * 0.13,),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.04,),
+              SizedBox(height: MediaQuery.sizeOf(context).height * 0.045,),
               Text(
                 '${widget.loginType.label} 로그인',
                 style: AppTextStyles.interBold(size: 22, color: AppColors.textColor, lineHeight: 22, letterSpacing: 0),
               ),
-              Spacer(flex: 5,),
-              // 입력 필드
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 45),
-                child: Column(
-                  spacing: MediaQuery.sizeOf(context).height * 0.024,
-                  children: [
-                    TextInputField(hintText: '이메일', isPassword: false, controller: idController),
-                    TextInputField(hintText: '비밀번호', isPassword: true, controller: passwordController),
-                  ],
-                ),
-              ),
               Spacer(flex: 4,),
-              // 로그인 회원가입 버튼
-              Padding(
-                padding: const EdgeInsetsGeometry.symmetric(horizontal: 24),
-                child: Column(
-                  spacing: 26,
-                  children: [
-                    RectButton(
-                      title: '로그인',
-                      function: () => print('login'),
-                      backgroundColor: AppColors.lightGrey,
-                      titleColor: AppColors.textColor,
-                    ),
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignupPage(loginType: widget.loginType,),)),
-                      child: Text(
-                        '회원가입',
-                        style: AppTextStyles.robotoRegular(
-                          size: 14,
-                          color: AppColors.textColor,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              inputFields(),
+              Spacer(flex: 3,),
+              loginAndSignupButton(),
               Spacer(flex: 10,),
             ],
           ),
@@ -90,4 +65,40 @@ class _LoginPageState extends State<LoginPage> {
       )),
     );
   }
+
+  Widget inputFields() => Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 45),
+    child: Column(
+      spacing: MediaQuery.sizeOf(context).height * 0.024,
+      children: [
+        TextInputField(hintText: '이메일', isPassword: false, controller: emailController),
+        TextInputField(hintText: '비밀번호', isPassword: true, controller: passwordController),
+      ],
+    ),
+  );
+
+  Widget loginAndSignupButton() => Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 24),
+    child: Column(
+      spacing: 26,
+      children: [
+        RectButton(
+          title: '로그인',
+          function: () => print('login'),
+          backgroundColor: AppColors.lightGrey,
+          titleColor: AppColors.textColor,
+        ),
+        GestureDetector(
+          onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SignupPage(loginType: widget.loginType,),)),
+          child: Text(
+            '회원가입',
+            style: AppTextStyles.robotoRegular(
+              size: 14,
+              color: AppColors.textColor,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }

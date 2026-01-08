@@ -5,7 +5,7 @@ import 'package:weesh/presentation/pages/login_page.dart';
 import 'package:weesh/presentation/theme/app_colors.dart';
 import 'package:weesh/presentation/theme/app_text_styles.dart';
 import 'package:weesh/presentation/widgets/character_widget.dart';
-import 'package:weesh/presentation/widgets/circle_button.dart';
+import 'package:weesh/presentation/widgets/rect_button.dart';
 import 'package:weesh/presentation/widgets/text_input_field.dart';
 
 class SignupPage extends StatefulWidget {
@@ -18,10 +18,19 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  final TextEditingController classCodeController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController idController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,53 +40,69 @@ class _SignupPageState extends State<SignupPage> {
           height: MediaQuery.sizeOf(context).height - (MediaQuery.paddingOf(context).top) - (MediaQuery.paddingOf(context).bottom),
           child: Column(
             children: [
-              SizedBox(height: 36,),
+              SizedBox(height: (MediaQuery.sizeOf(context).height * 0.03),),
               Text(
                 'Weesh',
-                style: AppTextStyles.robotoBlack(size: 32, color: AppColors.primary, fontStyle: FontStyle.italic),
+                style: AppTextStyles.robotoBlack(
+                  size: 32,
+                  color: AppColors.primary,
+                  fontStyle: FontStyle.italic,
+                ),
               ),
               SizedBox(height: (MediaQuery.sizeOf(context).height * 0.13) - (MediaQuery.paddingOf(context).top),),
-              CharacterWidget(name: 'timid_green'),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.035,),
+              CharacterWidget(name: 'happy_green', width: MediaQuery.sizeOf(context).width * 0.13,),
+              SizedBox(height: MediaQuery.sizeOf(context).height * 0.045,),
               Text(
                 '${widget.loginType.label} 회원가입',
-                style: AppTextStyles.interBold(size: 26, color: AppColors.primary, lineHeight: 24, letterSpacing: 0),
+                style: AppTextStyles.interBold(size: 22, color: AppColors.textColor, lineHeight: 22, letterSpacing: 0),
               ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.04,),
-              // 입력 필드
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 45),
-                child: Column(
-                  spacing: MediaQuery.sizeOf(context).height * 0.024,
-                  children: [
-                    TextInputField(hintText: '학번', isPassword: false, controller: classCodeController),
-                    TextInputField(hintText: '이름', isPassword: false, controller: nameController),
-                    TextInputField(hintText: '아이디', isPassword: false, controller: idController),
-                    TextInputField(hintText: '비밀번호', isPassword: true, controller: passwordController),
-                  ],
-                ),
-              ),
-              Spacer(),
-              // 로그인 회원가입 버튼
-              Padding(
-                padding: const EdgeInsetsGeometry.symmetric(horizontal: 24),
-                child: Column(
-                  children: [
-                    CircleButton(title: '회원가입', heightPadding: 18, function: () => print('회원가입'),),
-                    CircleButton(
-                      title: '로그인',
-                      heightPadding: 20,
-                      function: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage(loginType: widget.loginType,),)),
-                      unselected: true,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 30,),
+              Spacer(flex: 4,),
+              inputFields(),
+              Spacer(flex: 3,),
+              loginAndSignupButton(),
+              Spacer(flex: 10,),
             ],
           ),
         ),
       )),
     );
   }
+
+  Widget inputFields() => Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 45),
+    child: Column(
+      spacing: MediaQuery.sizeOf(context).height * 0.024,
+      children: [
+        TextInputField(hintText: '이름', isPassword: false, controller: nameController),
+        TextInputField(hintText: '이메일', isPassword: false, controller: emailController),
+        TextInputField(hintText: '비밀번호', isPassword: true, controller: passwordController),
+        TextInputField(hintText: '비밀번호 확인', isPassword: true, controller: confirmPasswordController),
+      ],
+    ),
+  );
+
+  Widget loginAndSignupButton() => Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 24),
+    child: Column(
+      spacing: 26,
+      children: [
+        RectButton(
+          title: '회원가입',
+          function: () => print('signup'),
+          backgroundColor: AppColors.lightGrey,
+          titleColor: AppColors.textColor,
+        ),
+        GestureDetector(
+          onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage(loginType: widget.loginType,),)),
+          child: Text(
+            '로그인',
+            style: AppTextStyles.robotoRegular(
+              size: 14,
+              color: AppColors.textColor,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }
