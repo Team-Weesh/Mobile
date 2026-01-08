@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
               Spacer(flex: 4,),
               // 로그인 회원가입 버튼
               Padding(
-                padding: const EdgeInsetsGeometry.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
                   spacing: 26,
                   children: [

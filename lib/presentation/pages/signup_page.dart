@@ -60,7 +60,7 @@ class _SignupPageState extends State<SignupPage> {
               Spacer(),
               // 로그인 회원가입 버튼
               Padding(
-                padding: const EdgeInsetsGeometry.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
                   children: [
                     CircleButton(title: '회원가입', heightPadding: 18, function: () => print('회원가입'),),

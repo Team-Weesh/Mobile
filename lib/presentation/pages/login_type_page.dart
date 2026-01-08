@@ -44,7 +44,7 @@ class _LoginTypePageState extends State<LoginTypePage> {
             ),
             Spacer(flex: 5,),
             Padding(
-              padding: EdgeInsetsGeometry.symmetric(horizontal: 38 - 8),
+              padding: EdgeInsets.symmetric(horizontal: 38 - 8),
               child: Row(
                 spacing: 40 - 16,
                 children: [
@@ -70,7 +70,7 @@ class _LoginTypePageState extends State<LoginTypePage> {
   Widget loginTypeButton(String title, String image, LoginType loginType) => Expanded(child: GestureDetector(
     onTap: () => changeLoginType(loginType),
     child: Stack(
-      alignment: AlignmentGeometry.topRight,
+      alignment: Alignment.topRight,
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -85,7 +85,7 @@ class _LoginTypePageState extends State<LoginTypePage> {
           ),
         ),
         if(selectedLoginType == loginType) Container(
-          alignment: AlignmentGeometry.center,
+          alignment: Alignment.center,
           width: 23,
           height: 23,
           decoration: BoxDecoration(
