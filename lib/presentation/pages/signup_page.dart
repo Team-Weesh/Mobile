@@ -5,7 +5,6 @@ import 'package:weesh/presentation/pages/login_page.dart';
 import 'package:weesh/presentation/theme/app_colors.dart';
 import 'package:weesh/presentation/theme/app_text_styles.dart';
 import 'package:weesh/presentation/widgets/character_widget.dart';
-import 'package:weesh/presentation/widgets/circle_button.dart';
 import 'package:weesh/presentation/widgets/rect_button.dart';
 import 'package:weesh/presentation/widgets/text_input_field.dart';
 
@@ -66,7 +65,7 @@ class _SignupPageState extends State<SignupPage> {
       spacing: MediaQuery.sizeOf(context).height * 0.024,
       children: [
         TextInputField(hintText: '이름', isPassword: false, controller: nameController),
-        TextInputField(hintText: '이메일', isPassword: true, controller: emailController),
+        TextInputField(hintText: '이메일', isPassword: false, controller: emailController),
         TextInputField(hintText: '비밀번호', isPassword: true, controller: passwordController),
         TextInputField(hintText: '비밀번호 확인', isPassword: true, controller: confirmPasswordController),
       ],
@@ -85,7 +84,7 @@ class _SignupPageState extends State<SignupPage> {
           titleColor: AppColors.textColor,
         ),
         GestureDetector(
-          onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignupPage(loginType: widget.loginType,),)),
+          onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage(loginType: widget.loginType,),)),
           child: Text(
             '로그인',
             style: AppTextStyles.robotoRegular(
