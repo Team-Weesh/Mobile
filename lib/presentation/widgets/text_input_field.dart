@@ -25,7 +25,6 @@ class _TextInputFieldState extends State<TextInputField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsetsGeometry.symmetric(vertical: 12),
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(width: 2, color: AppColors.lineColor))
       ),
@@ -33,31 +32,37 @@ class _TextInputFieldState extends State<TextInputField> {
         children: [
           Expanded(
             child: TextField(
-              obscureText: isVisible,
+              obscureText: widget.isPassword,
               controller: widget.controller,
-              style: AppTextStyles.robotoRegular(size: 18, color: AppColors.textColor),
+              style: AppTextStyles.robotoRegular(
+                size: 16,
+                color: AppColors.textColor,
+              ),
               decoration: InputDecoration(
-                hintText: widget.hintText,
-                hintStyle: AppTextStyles.robotoRegular(size: 18, color: AppColors.primary),
+                labelText: widget.hintText,
+                labelStyle: AppTextStyles.robotoRegular(
+                  size: 16,
+                  color: AppColors.grey,
+                ),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
                 border: InputBorder.none,
-                isCollapsed: true,
               ),
             ),
           ),
-          if (widget.isPassword)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: GestureDetector(
-                onTap: togglePasswordVisibility,
-                child: Icon(
-                  isVisible
-                      ? Icons.visibility_off
-                      : Icons.visibility,
-                  color: AppColors.primary,
-                  size: 18,
-                ),
-              ),
-            ),
+          // if (widget.isPassword)
+          //   Padding(
+          //     padding: const EdgeInsets.symmetric(horizontal: 5),
+          //     child: GestureDetector(
+          //       onTap: togglePasswordVisibility,
+          //       child: Icon(
+          //         isVisible
+          //             ? Icons.visibility_off
+          //             : Icons.visibility,
+          //         color: AppColors.primary,
+          //         size: 18,
+          //       ),
+          //     ),
+          //   ),
         ],
       ),
     );

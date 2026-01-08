@@ -6,4 +6,5 @@ class AppColors {
   static const whiteColor = Color(0xFFFDFDFD);
   static const lineColor = Color(0xFFDBDBDB);
   static const lightGrey = Color(0xFFF2F2F2);
+  static const grey = Color(0xFF757575);
 }
