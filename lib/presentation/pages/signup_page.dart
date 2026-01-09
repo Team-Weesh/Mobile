@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:weesh/domain/entities/auth_field.dart';
 import 'package:weesh/domain/enum/login_type.dart';
 import 'package:weesh/presentation/mappers/login_type_ui_mapper.dart';
 import 'package:weesh/presentation/pages/login_page.dart';
 import 'package:weesh/presentation/theme/app_colors.dart';
 import 'package:weesh/presentation/theme/app_text_styles.dart';
+import 'package:weesh/presentation/widgets/auth_action_section.dart';
+import 'package:weesh/presentation/widgets/auth_input_fields.dart';
 import 'package:weesh/presentation/widgets/character_widget.dart';
-import 'package:weesh/presentation/widgets/rect_button.dart';
-import 'package:weesh/presentation/widgets/text_input_field.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key, required this.loginType});
@@ -22,6 +23,13 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController = TextEditingController();
+
+  final fields = [
+    AuthField(hintText: '이름', isPassword: false),
+    AuthField(hintText: '이메일', isPassword: false),
+    AuthField(hintText: '비밀번호', isPassword: true),
+    AuthField(hintText: '비밀번호 확인', isPassword: true),
+  ];
 
   @override
   void dispose() {
@@ -57,9 +65,22 @@ class _SignupPageState extends State<SignupPage> {
                 style: AppTextStyles.interBold(size: 22, color: AppColors.textColor, lineHeight: 22, letterSpacing: 0),
               ),
               Spacer(flex: 4,),
-              inputFields(),
+              AuthInputFields(
+                fields: fields,
+                controllers: [
+                  nameController,
+                  emailController,
+                  passwordController,
+                  confirmPasswordController,
+                ],
+              ),
               Spacer(flex: 3,),
-              loginAndSignupButton(),
+              AuthActionSection(
+                actionText: '회원가입',
+                navText: '로그인',
+                onPrimaryAction: () => print('singup'),
+                onNavigation: LoginPage(loginType: widget.loginType,),
+              ),
               Spacer(flex: 10,),
             ],
           ),
@@ -67,42 +88,4 @@ class _SignupPageState extends State<SignupPage> {
       )),
     );
   }
-
-  Widget inputFields() => Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 45),
-    child: Column(
-      spacing: MediaQuery.sizeOf(context).height * 0.024,
-      children: [
-        TextInputField(hintText: '이름', isPassword: false, controller: nameController),
-        TextInputField(hintText: '이메일', isPassword: false, controller: emailController),
-        TextInputField(hintText: '비밀번호', isPassword: true, controller: passwordController),
-        TextInputField(hintText: '비밀번호 확인', isPassword: true, controller: confirmPasswordController),
-      ],
-    ),
-  );
-
-  Widget loginAndSignupButton() => Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 24),
-    child: Column(
-      spacing: 26,
-      children: [
-        RectButton(
-          title: '회원가입',
-          function: () => print('signup'),
-          backgroundColor: AppColors.lightGrey,
-          titleColor: AppColors.textColor,
-        ),
-        GestureDetector(
-          onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage(loginType: widget.loginType,),)),
-          child: Text(
-            '로그인',
-            style: AppTextStyles.robotoRegular(
-              size: 14,
-              color: AppColors.textColor,
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
 }
