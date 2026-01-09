@@ -26,7 +26,7 @@ class _TextInputFieldState extends State<TextInputField> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(width: 2, color: AppColors.lineColor))
+        border: Border(bottom: BorderSide(width: 2, color: AppColors.borderGrey))
       ),
       child: Row(
         children: [
@@ -36,13 +36,13 @@ class _TextInputFieldState extends State<TextInputField> {
               controller: widget.controller,
               style: AppTextStyles.robotoRegular(
                 size: 16,
-                color: AppColors.textColor,
+                color: AppColors.textPrimary,
               ),
               decoration: InputDecoration(
                 labelText: widget.hintText,
                 labelStyle: AppTextStyles.robotoRegular(
                   size: 16,
-                  color: AppColors.grey,
+                  color: AppColors.textSecondary,
                 ),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 border: InputBorder.none,
