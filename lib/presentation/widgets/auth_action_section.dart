@@ -27,8 +27,8 @@ class AuthActionSection extends StatelessWidget {
           RectButton(
             title: actionText,
             function: onPrimaryAction,
-            backgroundColor: AppColors.lightGrey,
-            titleColor: AppColors.textColor,
+            backgroundColor: AppColors.backgroundLightGrey,
+            titleColor: AppColors.textPrimary,
           ),
           GestureDetector(
             onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => onNavigation,)),
@@ -36,7 +36,7 @@ class AuthActionSection extends StatelessWidget {
               navText,
               style: AppTextStyles.robotoRegular(
                 size: 14,
-                color: AppColors.textColor,
+                color: AppColors.textPrimary,
               ),
             ),
           ),

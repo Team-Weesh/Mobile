@@ -6,7 +6,7 @@ void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
-      scaffoldBackgroundColor: AppColors.whiteColor
+      scaffoldBackgroundColor: AppColors.white
     ),
     home: SplashPage(),
   ));

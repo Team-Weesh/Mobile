@@ -62,7 +62,7 @@ class _SignupPageState extends State<SignupPage> {
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.045,),
               Text(
                 '${widget.loginType.label} 회원가입',
-                style: AppTextStyles.interBold(size: 22, color: AppColors.textColor, lineHeight: 22, letterSpacing: 0),
+                style: AppTextStyles.interBold(size: 22, color: AppColors.textPrimary, lineHeight: 22, letterSpacing: 0),
               ),
               Spacer(flex: 4,),
               AuthInputFields(

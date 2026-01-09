@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weesh/domain/entities/auth_field.dart';
 import 'package:weesh/domain/enum/login_type.dart';
 import 'package:weesh/presentation/mappers/login_type_ui_mapper.dart';
+import 'package:weesh/presentation/pages/admin_page.dart';
 import 'package:weesh/presentation/pages/signup_page.dart';
 import 'package:weesh/presentation/theme/app_colors.dart';
 import 'package:weesh/presentation/theme/app_text_styles.dart';
@@ -56,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.045,),
               Text(
                 '${widget.loginType.label} 로그인',
-                style: AppTextStyles.interBold(size: 22, color: AppColors.textColor, lineHeight: 22, letterSpacing: 0),
+                style: AppTextStyles.interBold(size: 22, color: AppColors.textPrimary, lineHeight: 22, letterSpacing: 0),
               ),
               Spacer(flex: 4,),
               AuthInputFields(
@@ -70,7 +71,11 @@ class _LoginPageState extends State<LoginPage> {
               AuthActionSection(
                 actionText: '로그인',
                 navText: '회원가입',
-                onPrimaryAction: () => print('login'),
+                onPrimaryAction: () {
+                  if(widget.loginType == LoginType.teacher) {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => AdminPage(),),);
+                  }
+                },
                 onNavigation: SignupPage(loginType: widget.loginType,),
               ),
               Spacer(flex: 10,),

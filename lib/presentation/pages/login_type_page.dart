@@ -40,7 +40,7 @@ class _LoginTypePageState extends State<LoginTypePage> {
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.04,),
             Text(
               '어떤 분이신가요?',
-              style: AppTextStyles.interBold(size: 24, color: AppColors.textColor, lineHeight: 24, letterSpacing: 0),
+              style: AppTextStyles.interBold(size: 24, color: AppColors.textPrimary, lineHeight: 24, letterSpacing: 0),
             ),
             Spacer(flex: 5,),
             Padding(
@@ -57,8 +57,8 @@ class _LoginTypePageState extends State<LoginTypePage> {
             RectButton(
               title: '시작하기',
               function: () => navigateLoginPage(),
-              backgroundColor: selectedLoginType == null ? AppColors.lightGrey : AppColors.primary,
-              titleColor: selectedLoginType == null ? AppColors.textColor : Colors.white,
+              backgroundColor: selectedLoginType == null ? AppColors.backgroundLightGrey : AppColors.primary,
+              titleColor: selectedLoginType == null ? AppColors.textPrimary : AppColors.white,
             ),
             SizedBox(height: 34,)
           ],
@@ -92,7 +92,7 @@ class _LoginTypePageState extends State<LoginTypePage> {
             color: AppColors.primary,
             shape: BoxShape.circle
           ),
-          child: Icon(Icons.check_rounded, color: Colors.white, size: 16,),
+          child: Icon(Icons.check_rounded, color: AppColors.white, size: 16,),
         ),
       ],
     ),
