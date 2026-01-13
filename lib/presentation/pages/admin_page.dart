@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weesh/presentation/pages/schedule_page.dart';
 import 'package:weesh/presentation/theme/app_colors.dart';
 import 'package:weesh/presentation/theme/app_text_styles.dart';
 import 'package:weesh/presentation/widgets/rect_button.dart';
@@ -35,7 +36,7 @@ class AdminPage extends StatelessWidget {
           Spacer(),
           RectButton(
             title: '일정보기',
-            function: () => print('일정보기'),
+            function: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => SchedulePage(),)),
             backgroundColor: AppColors.primary,
             titleColor: AppColors.white,
             height: 55,
