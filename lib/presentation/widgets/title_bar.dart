@@ -6,20 +6,24 @@ class TitleBar extends StatelessWidget {
   const TitleBar({
     super.key,
     required this.title,
+    this.isPageTitle = false,
+    this.topPadding,
   });
 
   final String title;
+  final bool isPageTitle;
+  final double? topPadding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: MediaQuery.sizeOf(context).height * 0.03),
+      padding: EdgeInsets.only(top: topPadding ?? MediaQuery.sizeOf(context).height * 0.03),
       child: Align(
         alignment: AlignmentGeometry.centerLeft,
         child: Text(
           title,
-          style: AppTextStyles.robotoSemiBold(
-            size: 20,
+          style: AppTextStyles.robotoBold(
+            size: isPageTitle ? 20 : 18,
             color: AppColors.textPrimary,
             lineHeight: 20,
           ),

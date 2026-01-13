@@ -27,7 +27,7 @@ class AuthActionSection extends StatelessWidget {
           RectButton(
             title: actionText,
             function: onPrimaryAction,
-            backgroundColor: AppColors.backgroundLightGrey,
+            backgroundColor: AppColors.neutral100,
             titleColor: AppColors.textPrimary,
           ),
           GestureDetector(

@@ -21,13 +21,13 @@ class CircleButton extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(200),
-            color: unselected ? AppColors.white : AppColors.primary
+            color: unselected ? AppColors.neutralWhite : AppColors.primary
         ),
         child: Text(
           title,
           style: unselected
               ? AppTextStyles.robotoRegular(size: 16, color: AppColors.primary)
-              : AppTextStyles.robotoSemiBold(size: 20, color: AppColors.white),
+              : AppTextStyles.robotoSemiBold(size: 20, color: AppColors.neutralWhite),
         ),
       ),
     );

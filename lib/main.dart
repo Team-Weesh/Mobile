@@ -20,7 +20,7 @@ void main() {
 
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
-      scaffoldBackgroundColor: AppColors.white
+      scaffoldBackgroundColor: AppColors.neutralWhite
     ),
     home: SplashPage(),
   ));
