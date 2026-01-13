@@ -18,7 +18,7 @@ class AdminPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TitleBar(title: '관리자 페이지'),
+                TitleBar(title: '관리자 페이지', isPageTitle: true,),
                 SizedBox(height: 40,),
                 Text(
                   '예약 상태 안내',
@@ -38,7 +38,7 @@ class AdminPage extends StatelessWidget {
             title: '일정보기',
             function: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => SchedulePage(),)),
             backgroundColor: AppColors.primary,
-            titleColor: AppColors.white,
+            titleColor: AppColors.neutralWhite,
             height: 55,
             margin: 24,
           ),
@@ -73,7 +73,7 @@ class AdminPage extends StatelessWidget {
       bookingStatusItem('예약', AppColors.primary),
       bookingStatusItem('예약 승인', AppColors.statusPurple),
       bookingStatusItem('예약 거부', AppColors.statusRed),
-      bookingStatusItem('만료된 시간, 날짜', AppColors.statusGrey),
+      bookingStatusItem('만료된 시간, 날짜', AppColors.neutral300),
       bookingStatusItem('예약 안됨', AppColors.textPrimary),
     ],
   );

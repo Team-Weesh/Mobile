@@ -57,8 +57,8 @@ class _LoginTypePageState extends State<LoginTypePage> {
             RectButton(
               title: '시작하기',
               function: () => navigateLoginPage(),
-              backgroundColor: selectedLoginType == null ? AppColors.backgroundLightGrey : AppColors.primary,
-              titleColor: selectedLoginType == null ? AppColors.textPrimary : AppColors.white,
+              backgroundColor: selectedLoginType == null ? AppColors.neutral100 : AppColors.primary,
+              titleColor: selectedLoginType == null ? AppColors.textPrimary : AppColors.neutralWhite,
             ),
             SizedBox(height: 34,)
           ],
@@ -92,7 +92,7 @@ class _LoginTypePageState extends State<LoginTypePage> {
             color: AppColors.primary,
             shape: BoxShape.circle
           ),
-          child: Icon(Icons.check_rounded, color: AppColors.white, size: 16,),
+          child: Icon(Icons.check_rounded, color: AppColors.neutralWhite, size: 16,),
         ),
       ],
     ),

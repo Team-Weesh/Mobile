@@ -26,7 +26,7 @@ class _TextInputFieldState extends State<TextInputField> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(width: 2, color: AppColors.borderGrey))
+        border: Border(bottom: BorderSide(width: 2, color: AppColors.neutral200))
       ),
       child: Row(
         children: [
